@@ -20,7 +20,7 @@ const studentPost = async (req, res) => {
 
     } catch (e) {
         console.log('Mistake creating the student');
-        console.error(e) //Sirve para depurar el programa
+        console.error(e) //Sirve para depurar el programa, al final ANTES DE ENVIARLO COMENTAR LA LINEA PARA QUE NO DE ERROR    
     }
 }
 
