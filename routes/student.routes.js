@@ -16,7 +16,9 @@ router.post(
         check("names", "Required name").not().isEmpty(),
         check("email", "This isn't a valid email").isEmail(),
         check("email").custom(existentEmail),
-        check("password", "Password must have 8 characters").isLength({ min: 8, }),
+        check("password", "Password must have 8 characters").isLength({ min: 5, }),
         validateFields,
     ], studentPost
 )
+
+module.exports=router;

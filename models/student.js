@@ -15,8 +15,8 @@ const StudentsSchema = Schema({
     },
     subject: [
         {
-            type: String,
-            required: [true, 'Required field']
+            type: Schema.Types.ObjectId,
+            ref: 'Subject'
         }
     ],
     role: {
