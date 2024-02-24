@@ -22,7 +22,7 @@ const StudentsSchema = Schema({
     role: {
         type: String,
         required: true,
-        enum: ["STUDENT_ROLE", "TEACHER_ROLE"],
+        // enum: ["STUDENT_ROLE", "TEACHER_ROLE"],
         default: "STUDENT_ROLE"
     },
     status: {
