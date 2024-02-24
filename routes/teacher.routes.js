@@ -2,21 +2,20 @@ const { Router } = require('express');
 const { check } = require('express-validator');
 
 const { validateFields } = require('../middlewares/validate-fields');
-const { existentEmail } = require('../helpers/db-validators');
-
-const { studentPost } = require('../controllers/student-controller');
+const { existentTeacherEmail } = require('../helpers/db-validators');
+const { teacherPost } = require('../controllers/teacher-controller');
 
 const router = Router();
 
-router.post( 
+router.post(
     "/",
     [
         check("names", "Required name").not().isEmpty(),
         check("email", "This isn't a valid email").isEmail(),
-        check("email").custom(existentEmail),
+        check("email").custom(existentTeacherEmail),
         check("password", "Password must have 5 characters").isLength({ min: 5, }),
         validateFields,
-    ], studentPost
+    ], teacherPost
 )
 
 module.exports = router;
