@@ -24,6 +24,10 @@ const studentPost = async (req, res) => {
     }
 }
 
+const studentPut = async(req, res) => {
+    
+}
+
 module.exports = {
     studentPost
 }

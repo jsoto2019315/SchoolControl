@@ -2,6 +2,7 @@ const { generateJWT } = require('../helpers/generate-jws');
 const Student = require('../models/student');
 const Teacher = require('../models/teacher');
 const bcryptjs = require('bcryptjs');
+const { checkAssignedSubjects } = require('./addSubjectToStudent-controller');
 
 const login = async (req, res) => {
     try {
@@ -43,7 +44,7 @@ const login = async (req, res) => {
         }
 
         const token = await generateJWT(user.id);
-
+                
         res.status(200).json({
             msg: 'Login success',
             message: (`Welcome ${user.names}, you have the role ${user.role} `),
