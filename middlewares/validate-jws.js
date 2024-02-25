@@ -22,7 +22,7 @@ const validateJWT = async (req, res, next) => {
 
         if (!user) {
             return res.status(400).json({
-                msg: 'Does not exists';
+                msg: 'Does not exists'
             }); 
         }
         
