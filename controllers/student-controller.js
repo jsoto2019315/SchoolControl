@@ -25,9 +25,17 @@ const studentPost = async (req, res) => {
 }
 
 const studentPut = async(req, res) => {
-    
+    const { id } = req.params;
+    const { _id, names, email, password, role, status, ...rest} = req.body;
+
+    const student = await Student.findByIdAndUpdate(id, rest);
+
+    res.status(200).json({
+        msg: 'Subject added successfully'
+    });
 }
 
 module.exports = {
-    studentPost
+    studentPost,
+    studentPut
 }

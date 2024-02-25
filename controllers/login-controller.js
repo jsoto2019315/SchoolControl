@@ -2,7 +2,6 @@ const { generateJWT } = require('../helpers/generate-jws');
 const Student = require('../models/student');
 const Teacher = require('../models/teacher');
 const bcryptjs = require('bcryptjs');
-const { checkAssignedSubjects } = require('./addSubjectToStudent-controller');
 
 const login = async (req, res) => {
     try {
@@ -44,7 +43,8 @@ const login = async (req, res) => {
         }
 
         const token = await generateJWT(user.id);
-                
+
+
         res.status(200).json({
             msg: 'Login success',
             message: (`Welcome ${user.names}, you have the role ${user.role} `),
@@ -59,6 +59,20 @@ const login = async (req, res) => {
     }
 
 }
+
+// Assign Subjects to Student
+// const assignedSubjects = async (subjects = [], user) => {
+//     if (user.role === "STUDENT_ROLE") {
+//         if (subjects.length > 3) {
+//             throw new Error("A student can only be assigned to a maximum of 3 subjects.");
+//         }
+//         const uniqueSubjects = new Set(subjects);
+//         if (uniqueSubjects.size !== subjects.length) {
+//             throw new Error("A student cannot be assigned to the same subject multiple times.");
+//         }
+//     }
+//     return true;
+// };
 
 module.exports = {
     login

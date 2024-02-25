@@ -10,7 +10,6 @@ class Server {
         this.teacherPath = '/academicControl/v2/teachers/register'; //In this Endpoint the teacher can register to the app.
         this.subjectPath = '/academicControl/v2/subject/addNewSubject';
         this.loginPath = '/academicControl/v2';
-
         this.connectDB();
         this.middlewares();
         this.routes();
