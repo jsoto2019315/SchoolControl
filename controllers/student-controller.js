@@ -24,14 +24,21 @@ const studentPost = async (req, res) => {
     }
 }
 
+
 const studentPut = async(req, res) => {
-    const { id } = req.params;
+    const { id } = req.user;
     const { _id, names, email, password, role, status, ...rest} = req.body;
 
     const student = await Student.findByIdAndUpdate(id, rest);
 
+    if (req.user.role != 'STUDENT_ROLE') {
+        return res.status(400).json({
+            msg:'This is not a student'
+        })
+    }
+
     res.status(200).json({
-        msg: 'Subject added successfully'
+        msg: 'Student updated successfully'
     });
 }
 

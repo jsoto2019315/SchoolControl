@@ -2,9 +2,10 @@ const { Router } = require('express');
 const { check } = require('express-validator');
 
 const { validateFields } = require('../middlewares/validate-fields');
-const { existentEmail, existentStudentById } = require('../helpers/db-validators');
+const { existentEmail, existentStudentById, assignedSubjects } = require('../helpers/db-validators');
 
 const { studentPost, studentPut } = require('../controllers/student-controller');
+const { validateJWT } = require('../middlewares/validate-jws');
 
 const router = Router();
 
@@ -17,7 +18,16 @@ router.post(
         check("password", "Password must have 5 characters").isLength({ min: 5, }),
         validateFields,
     ], studentPost
-)
+);
+
+router.put(
+    "/",
+    [
+        validateJWT,
+        check("subject").custom((value, { req }) => assignedSubjects(value, req)),
+        validateFields,
+    ], studentPut
+);
 
 
 module.exports = router;

@@ -13,17 +13,15 @@ const validateJWT = async (req, res, next) => {
     try {
         const { uid } = jwt.verify(token, process.env.SECRETORPRIVATEKEY);
 
-        const user = await Student.findOne({_id: uid});
-        console.log('')
-        console.log('Log Student.findOne. Msg: I cant pass to Teacher validation')
-        if (!user) {
-            user = await Teacher.findOne({_id: uid});
-        }
-
-        if (!user) {
-            return res.status(400).json({
-                msg: 'Does not exists'
-            }); 
+        const student = await Student.findOne({_id: uid});
+        const teacher = await Teacher.findOne({_id: uid});
+        let user, userType;
+        if (student) {
+            user = student;
+            userType = 'student';
+        } else {
+            user = teacher;
+            userType = 'teacher';
         }
         
         if (!user.status) {
@@ -31,6 +29,7 @@ const validateJWT = async (req, res, next) => {
                 msg: 'Token is valid, but user has a false status'
             })
         }
+        
         req.user=user;
         next();
     } catch (e) {

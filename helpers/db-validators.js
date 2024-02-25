@@ -45,21 +45,24 @@ const existentTeacherById = async (id = '') => {
 
 
 //Assign Subject to Student
-// const assignedSubjects = async (subjects = [], user) => {
-//     if (user.role === "STUDENT_ROLE") {
-//         if (subjects.length > 3) {
-//             throw new Error("A student can only be assigned to a maximum of 3 subjects.");
-//         }
-//         const uniqueSubjects = new Set(subjects);
-//         if (uniqueSubjects.size !== subjects.length) {
-//             throw new Error("A student cannot be assigned to the same subject multiple times.");
-//         }
-//     }
-//     return true;
-// };
+const assignedSubjects = async (subjects = [], req) => {
+    if (req.user.role === "STUDENT_ROLE") {
+        if (subjects.length > 3) {
+            throw new Error("A student can only be assigned to a maximum of 3 subjects.");
+        };
+        const uniqueSubjects = new Set(subjects);
+        if (uniqueSubjects.size !== subjects.length) {
+            throw new Error("A student cannot be assigned to the same subject multiple times.");
+        }
+    }
+    return true;
+};
+
+
 module.exports = {
     existentEmail,
     existentStudentById,
     existentTeacherEmail,
-    existentTeacherById
+    existentTeacherById,
+    assignedSubjects
 }
