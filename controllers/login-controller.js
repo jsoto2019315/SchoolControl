@@ -4,18 +4,20 @@ const Teacher = require('../models/teacher');
 const bcryptjs = require('bcryptjs');
 
 const login = async (req, res) => {
-    const { email, password } = req.body;
-
     try {
 
-        //Search teacher or student
-        const user = await Student.findOne({ email });
+        const { email, password } = req.body;
+        const student = await Student.findOne({ email });
+        const teacher = await Teacher.findOne({ email });
 
-        console.log('')
-        console.log('Log login-controller.findOne. Msg: I cant pick up a teacher')
+        let user, userType;
 
-        if (!user) {
-            user = await Teacher.findOne({ email });
+        if (student) {
+            user = student;
+            userType = 'student';
+        } else {
+            user = teacher;
+            userType = 'teacher';
         }
 
         //Verify email
@@ -44,8 +46,8 @@ const login = async (req, res) => {
 
         res.status(200).json({
             msg: 'Login success',
-            user,
-            token
+            message: (`Welcome ${user.names}, you have the role ${user.role} `),
+            token: (`Your token is ${token}`)
         })
 
     } catch (e) {
