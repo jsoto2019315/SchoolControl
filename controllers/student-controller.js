@@ -75,7 +75,6 @@ const studentGetCourses = async (req, res) => {
 }
 
 const editStudentProfile = async (req, res) => {
-    console.log('antes')
     const { id } = req.user;
     const { _id, subject, role, status, password, ...rest } = req.body;
 
@@ -92,9 +91,34 @@ const editStudentProfile = async (req, res) => {
     });
 }
 
+const deleteStudentProfile = async (req, res) => {
+    const { id } = req.user;
+
+    try {
+        await Student.findByIdAndUpdate(id, { status: false });
+
+        const student = await Student.findOne({ _id: id });
+
+        if (req.user.role != 'STUDENT_ROLE') {
+            return res.status(400).json({
+                msg: 'This is not a student'
+            })
+        }
+
+        res.status(200).json({
+            msg: 'Student deleted'
+        })
+    } catch (e) {
+        console.error("Error deleting student:", error);
+        res.status(500).json({ error: 'Internal server error' });
+
+    }
+}
+
 module.exports = {
     studentPost,
     studentPut,
     studentGetCourses,
-    editStudentProfile
+    editStudentProfile,
+    deleteStudentProfile
 }

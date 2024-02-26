@@ -4,7 +4,7 @@ const { check } = require('express-validator');
 const { validateFields } = require('../middlewares/validate-fields');
 const { existentEmail, existentStudentById, assignedSubjects, existentStudentName } = require('../helpers/db-validators');
 
-const { studentPost, studentPut, studentGetCourses, editStudentProfile } = require('../controllers/student-controller');
+const { studentPost, studentPut, studentGetCourses, editStudentProfile, deleteStudentProfile } = require('../controllers/student-controller');
 const { validateJWT } = require('../middlewares/validate-jws');
 
 const router = Router();
@@ -47,5 +47,12 @@ router.put(
     ], editStudentProfile
 )
 
+router.delete(
+    "/",
+    [
+        validateJWT,
+        validateFields
+    ], deleteStudentProfile
+);
 
 module.exports = router;
