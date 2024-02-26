@@ -1,0 +1,28 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "Login",
+    "dateExported": "2024-02-26T04:30:41.588Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "a7df6c85-ea25-4f52-96fb-1ef8d9163e6f",
+            "colId": "b0560778-55a2-4ca3-a9e6-3e6b076272c9",
+            "containerId": "",
+            "name": "log in",
+            "url": "http://localhost:3000/academicControl/v2/login",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2024-02-25T06:08:27.250Z",
+            "modified": "2024-02-26T04:29:21.675Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"email\": \"alopez@kinal.edu.gt\",\n  \"password\": \"zxcvb\"\n}",
+                "form": []
+            },
+            "tests": []
+        }
+    ]
+}

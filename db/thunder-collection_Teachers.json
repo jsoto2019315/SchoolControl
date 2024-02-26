@@ -1,0 +1,28 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "Teachers",
+    "dateExported": "2024-02-26T04:30:24.852Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "64e33e0a-cfc8-4063-8d5b-3f92b21d2727",
+            "colId": "94a994b5-f9c0-433c-b7d8-b68c7f43a207",
+            "containerId": "",
+            "name": "teacherRegister",
+            "url": "http://localhost:3000/academicControl/v2/teachers/register",
+            "method": "POST",
+            "sortNum": 20000,
+            "created": "2024-02-24T03:51:41.271Z",
+            "modified": "2024-02-24T15:59:05.502Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"names\":\"Nicolas Vargas\",\n  \"email\":\"nocilasvargas@kinal.org.gt\",\n  \"password\":\"zxcvb\"\n}",
+                "form": []
+            },
+            "tests": []
+        }
+    ]
+}

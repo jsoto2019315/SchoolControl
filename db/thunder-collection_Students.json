@@ -1,0 +1,114 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "Students",
+    "dateExported": "2024-02-26T04:29:49.340Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "b333c77b-0cea-420b-b035-73af7ecf392b",
+            "colId": "342df7ec-c926-4dac-8c25-a7949286f0ca",
+            "containerId": "",
+            "name": "studentRegister",
+            "url": "http://localhost:3000/academicControl/v2/students/register",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2024-02-24T00:50:11.690Z",
+            "modified": "2024-02-26T01:23:42.062Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"names\":\"Oscar Morales\",\n  \"email\":\"omorales-2019321@kinal.edu.gt\",\n  \"password\":\"12345\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "03f1532b-8174-4a03-bf74-be6a60d37003",
+            "colId": "342df7ec-c926-4dac-8c25-a7949286f0ca",
+            "containerId": "",
+            "name": "addSubjectToStudent",
+            "url": "http://localhost:3000/academicControl/v2/students/addSubjectToStudent",
+            "method": "PUT",
+            "sortNum": 20000,
+            "created": "2024-02-26T04:23:08.306Z",
+            "modified": "2024-02-26T04:26:46.326Z",
+            "headers": [
+                {
+                    "name": "x-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWQ5NGU3ZDg1MDM3M2ZjNjkzNDgxNmEiLCJpYXQiOjE3MDg5MjE1NzksImV4cCI6MTcwODkyNTE3OX0.W8HgBp1Wj-hDIGzlQu26Cb1LEykHxafOgW0evUOsRas"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"subject\":[\n      \"65d98fd55ee646d7e525bf78\",\n      \"65da1052e5f1bd2ae480c7cf\"\n    ]\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "2c9aa87e-5fae-4eb3-9584-dbc31d99c638",
+            "colId": "342df7ec-c926-4dac-8c25-a7949286f0ca",
+            "containerId": "",
+            "name": "ViewStudentSubjects",
+            "url": "http://localhost:3000/academicControl/v2/students/getStudentSubjects",
+            "method": "GET",
+            "sortNum": 30000,
+            "created": "2024-02-26T04:23:16.299Z",
+            "modified": "2024-02-26T04:27:02.551Z",
+            "headers": [
+                {
+                    "name": "x-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWQ5NGU3ZDg1MDM3M2ZjNjkzNDgxNmEiLCJpYXQiOjE3MDg5MjE1NzksImV4cCI6MTcwODkyNTE3OX0.W8HgBp1Wj-hDIGzlQu26Cb1LEykHxafOgW0evUOsRas"
+                }
+            ],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "f0d17e70-37aa-4258-a81b-e3d6bb306a65",
+            "colId": "342df7ec-c926-4dac-8c25-a7949286f0ca",
+            "containerId": "",
+            "name": "editStudentProfile",
+            "url": "http://localhost:3000/academicControl/v2/students/editStudentProfile",
+            "method": "PUT",
+            "sortNum": 40000,
+            "created": "2024-02-26T04:23:22.605Z",
+            "modified": "2024-02-26T04:27:27.486Z",
+            "headers": [
+                {
+                    "name": "x-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWQ5NGU3ZDg1MDM3M2ZjNjkzNDgxNmEiLCJpYXQiOjE3MDg5MjE1NzksImV4cCI6MTcwODkyNTE3OX0.W8HgBp1Wj-hDIGzlQu26Cb1LEykHxafOgW0evUOsRas"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"names\":\"Alejandro López\",\n  \"email\":\"alopez@kinal.edu.gt\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "9de89a7d-36de-42e0-81dd-b0e28692a62b",
+            "colId": "342df7ec-c926-4dac-8c25-a7949286f0ca",
+            "containerId": "",
+            "name": "DeleteStudentProfile",
+            "url": "http://localhost:3000/academicControl/v2/students/deleteStudentProfile",
+            "method": "DELETE",
+            "sortNum": 50000,
+            "created": "2024-02-26T04:23:26.678Z",
+            "modified": "2024-02-26T04:23:26.678Z",
+            "headers": [
+                {
+                    "name": "x-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWRiYWMxYjg4N2I5M2QwOTA1MDk4NWUiLCJpYXQiOjE3MDg5MTg4MzQsImV4cCI6MTcwODkyMjQzNH0.2T7s7-iz9WfMpHEOhnatBWqmQkbg0q12pZvofyx9Js4"
+                }
+            ],
+            "params": [],
+            "tests": []
+        }
+    ]
+}

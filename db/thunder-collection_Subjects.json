@@ -1,0 +1,28 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "Subjects",
+    "dateExported": "2024-02-26T04:30:37.883Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "2e7bf22a-86e4-4f1b-ae09-3b388e82afa0",
+            "colId": "2d732560-53f4-4f6d-8ca4-23efb13d0172",
+            "containerId": "",
+            "name": "addSubject",
+            "url": "http://localhost:3000/academicControl/v2/subject/addNewSubject",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2024-02-24T06:39:55.974Z",
+            "modified": "2024-02-24T15:55:26.509Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"subjectName\":\"Biología\"\n}",
+                "form": []
+            },
+            "tests": []
+        }
+    ]
+}
