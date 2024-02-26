@@ -25,15 +25,15 @@ const studentPost = async (req, res) => {
 }
 
 
-const studentPut = async(req, res) => {
+const studentPut = async (req, res) => {
     const { id } = req.user;
-    const { _id, names, email, password, role, status, ...rest} = req.body;
+    const { _id, names, email, password, role, status, ...rest } = req.body;
 
     const student = await Student.findByIdAndUpdate(id, rest);
 
     if (req.user.role != 'STUDENT_ROLE') {
         return res.status(400).json({
-            msg:'This is not a student'
+            msg: 'This is not a student'
         })
     }
 
@@ -42,7 +42,41 @@ const studentPut = async(req, res) => {
     });
 }
 
+
+
+const studentGetCourses = async (req, res) => {
+    const { id } = req.user;
+    try {
+        const student = await Promise.all([
+            Student.findOne({ _id: id })
+                    .populate('subject')
+        ]);
+
+        if (req.user.role != 'STUDENT_ROLE') {
+            return res.status(400).json({
+                msg: 'This is not a student'
+            })
+        }
+
+        const formattedStudents = student.map(student => ({
+            student: (`${student.names} has the next subjects assigned: ${student.subject.map(subject => subject.subjectName)}`),
+            //subject: student.subject.map(subject => subject.subjectName)
+            
+        }));
+
+        res.status(200).json({
+            student:  formattedStudents
+        })
+    } catch (e) {
+        console.error(e);
+        res.status(500).json({
+            msg:'Error trying to get student'
+        })
+    }
+}
+
 module.exports = {
     studentPost,
-    studentPut
+    studentPut,
+    studentGetCourses
 }

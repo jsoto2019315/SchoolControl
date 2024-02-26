@@ -11,6 +11,8 @@ class Server {
         this.subjectPath = '/academicControl/v2/subject/addNewSubject';
         this.loginPath = '/academicControl/v2';
         this.addSubjectToStudent = '/academicControl/v2/subject/addSubjectToStudent';
+        this.getStudentCourses = '/academicControl/v2/subject/getStudentSubjects';
+        
         this.connectDB();
         this.middlewares();
         this.routes();
@@ -32,6 +34,7 @@ class Server {
         this.app.use(this.subjectPath, require('../routes/subject.routes'));
         this.app.use(this.loginPath, require('../routes/login.routes'));
         this.app.use(this.addSubjectToStudent, require('../routes/student.routes'));
+        this.app.use(this.getStudentCourses, require('../routes/student.routes'));
     }
 
     listen() {
