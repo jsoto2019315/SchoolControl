@@ -43,13 +43,12 @@ const studentPut = async (req, res) => {
 }
 
 
-
 const studentGetCourses = async (req, res) => {
     const { id } = req.user;
     try {
         const student = await Promise.all([
             Student.findOne({ _id: id })
-                    .populate('subject')
+                .populate('subject')
         ]);
 
         if (req.user.role != 'STUDENT_ROLE') {
@@ -61,22 +60,41 @@ const studentGetCourses = async (req, res) => {
         const formattedStudents = student.map(student => ({
             student: (`${student.names} has the next subjects assigned: ${student.subject.map(subject => subject.subjectName)}`),
             //subject: student.subject.map(subject => subject.subjectName)
-            
+
         }));
 
         res.status(200).json({
-            student:  formattedStudents
+            student: formattedStudents
         })
     } catch (e) {
         console.error(e);
         res.status(500).json({
-            msg:'Error trying to get student'
+            msg: 'Error trying to get student'
         })
     }
+}
+
+const editStudentProfile = async (req, res) => {
+    console.log('antes')
+    const { id } = req.user;
+    const { _id, subject, role, status, password, ...rest } = req.body;
+
+    const student = await Student.findByIdAndUpdate(id, rest);
+
+    if (req.user.role != 'STUDENT_ROLE') {
+        return res.status(400).json({
+            msg: 'This is not a student'
+        })
+    }
+
+    res.status(200).json({
+        msg: 'Student profile updated successfully'
+    });
 }
 
 module.exports = {
     studentPost,
     studentPut,
-    studentGetCourses
+    studentGetCourses,
+    editStudentProfile
 }

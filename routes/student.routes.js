@@ -2,9 +2,9 @@ const { Router } = require('express');
 const { check } = require('express-validator');
 
 const { validateFields } = require('../middlewares/validate-fields');
-const { existentEmail, existentStudentById, assignedSubjects } = require('../helpers/db-validators');
+const { existentEmail, existentStudentById, assignedSubjects, existentStudentName } = require('../helpers/db-validators');
 
-const { studentPost, studentPut, studentGetCourses } = require('../controllers/student-controller');
+const { studentPost, studentPut, studentGetCourses, editStudentProfile } = require('../controllers/student-controller');
 const { validateJWT } = require('../middlewares/validate-jws');
 
 const router = Router();
@@ -36,6 +36,16 @@ router.get(
         validateFields
     ], studentGetCourses
 );
+
+router.put(
+    "/editStudentProfile",
+    [
+        validateJWT,
+        check("email", "This isn't a valid email").isEmail(),
+        check("email").custom(existentEmail),
+        validateFields
+    ], editStudentProfile
+)
 
 
 module.exports = router;
